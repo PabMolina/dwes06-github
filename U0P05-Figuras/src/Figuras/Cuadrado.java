@@ -6,7 +6,7 @@ public class Cuadrado {
 
 	public Cuadrado(double lado) {
 	
-		this.lado = 4.2;
+		this.lado =lado;
 	}
 
 	public double getLado() {
@@ -17,6 +17,17 @@ public class Cuadrado {
 		this.lado = lado;
 	}
 
+	public double calcularArea(double lado) {
+		double area;
+		area=lado*lado;
+		return area;
+	}
+	
+	public double calcularPerimetro(double lado) {
+		double perimetro;
+		perimetro=lado*4;
+		return perimetro;
+	}
 	@Override
 	public String toString() {
 		return "Cuadrado [lado=" + lado + "]";
