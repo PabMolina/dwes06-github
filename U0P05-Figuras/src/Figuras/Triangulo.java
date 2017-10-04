@@ -1,12 +1,12 @@
 package Figuras;
 
-public class Triangulo {
+public class Triangulo extends Figura{
 
 	private double base;
 	private double altura;
 	
-	public Triangulo(double base, double altura) {
-		
+	public Triangulo(String titulo,colores col,double base, double altura) {
+		super(titulo,col);
 		this.base = base;
 		this.altura = altura;
 	}
@@ -24,13 +24,13 @@ public class Triangulo {
 		this.altura = altura;
 	}
 	
-	public double calcularArea(double base,double altura) {
+	public double calcularArea() {
 		double area;
 		area=((base*altura)/2);
 		return area;
 	}
 	
-	public double calcularPerimetro(double base,double altura) {
+	public double calcularPerimetro() {
 		double perimetro;
 		perimetro=base*3;
 		return perimetro;
