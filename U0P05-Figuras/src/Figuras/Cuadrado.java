@@ -6,7 +6,7 @@ public class Cuadrado {
 
 	public Cuadrado(double lado) {
 	
-		this.lado = lado;
+		this.lado = 4.2;
 	}
 
 	public double getLado() {
@@ -15,6 +15,11 @@ public class Cuadrado {
 
 	public void setLado(double lado) {
 		this.lado = lado;
+	}
+
+	@Override
+	public String toString() {
+		return "Cuadrado [lado=" + lado + "]";
 	}
 
 }
