@@ -9,8 +9,18 @@ public class Ejercicio4a {
 		
 		Scanner leer = new Scanner(System.in);
 		int n;
-		System.out.println("Escribe un número");
+		System.out.println("Introduce un nÃºmero");
 		n=leer.nextInt();
 	}
-
+	public void incorrecto() {
+		try {
+		int numero;
+		Scanner leer=new Scanner(System.in);
+		System.out.println("Introduce un numero");
+		numero=leer.nextInt();	
+		System.out.println(numero);
+		}catch(Exception e) {
+			System.out.println("El valor introducido es incorrecto");
+		}
+	}
 }
