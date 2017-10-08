@@ -2,7 +2,7 @@ package ControlDeFlujo;
 
 import java.util.Scanner;
 
-public class Ejercicio4a {
+public class Ejercicio4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
