@@ -2,13 +2,13 @@ package Figuras;
 
 public class Circunferencia extends Figura{
 
-	private double radio;
-
-	public Circunferencia(String titulo,colores col,double radio) {
-		super(titulo,col);
-		this.radio = radio;
+	double radio;
+	
+	public Circunferencia(String titulo,Color color,double radio){
+		super(titulo,color);
+		this.radio=radio;
 	}
-
+	
 	public double getRadio() {
 		return radio;
 	}
@@ -17,24 +17,26 @@ public class Circunferencia extends Figura{
 		this.radio = radio;
 	}
 
-	
-	public double calcularArea() {
-		double area;
-		area=(Math.PI*(Math.pow(radio, 2)));
-		return area;
+	/**
+	 * Método para calcular el área de la circunferencia
+	 * @return el area de la figura 
+	 */
+	public double calcularArea(){
+		return (Math.PI*Math.pow(radio, 2));
 	}
-	
-	public double calcularPerimetro() {
-		double perimetro;
-		perimetro=2*Math.PI*radio;
-		return perimetro;
+	/**
+	 * Método para calcular el perímetro de la circunferencia
+	 * @return el perímetro de la circunferencia
+	 */
+	public double calcularPerimetro(){
+		return 2*Math.PI*radio;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Circunferencia [radio=" + radio + "]";
+		return super.toString()+" Circunferencia [radio=" + radio + "]";
 	}
-
 	
-
+	
+	
 }

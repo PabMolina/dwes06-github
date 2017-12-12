@@ -2,11 +2,11 @@ package Figuras;
 
 public class Cuadrado extends Figura{
 
-	private double lado;
-
-	public Cuadrado(String titulo,colores col,double lado) {
-		super(titulo,col);
-		this.lado =lado;
+	double lado;
+	
+	public Cuadrado(String titulo,Color color,double lado){
+		super(titulo,color);
+		this.lado=lado;
 	}
 
 	public double getLado() {
@@ -16,21 +16,25 @@ public class Cuadrado extends Figura{
 	public void setLado(double lado) {
 		this.lado = lado;
 	}
-
-	public double calcularArea() {
-		double area;
-		area=lado*lado;
-		return area;
+	/**
+	 * Método para calcular el área del cuadrado
+	 * @return el área del cuadrado
+	 */
+	public double calcularArea(){
+		return Math.pow(lado, 2);
+	}
+	/**
+	 * Método para calcular el perímetro del cuadrado
+	 * @return el perímetro del cuadrado
+	 */
+	public double calcularPerimetro(){
+		return lado*4;
 	}
 	
-	public double calcularPerimetro() {
-		double perimetro;
-		perimetro=lado*4;
-		return perimetro;
-	}
+
 	@Override
 	public String toString() {
-		return "Cuadrado [lado=" + lado + "]";
+		return super.toString()+" Cuadrado [lado=" + lado + "]";
 	}
-
+	
 }

@@ -2,15 +2,21 @@ package Figuras;
 
 public class Triangulo extends Figura{
 
-	private double base;
-	private double altura;
+	double base;
+	double altura;
 	
-	public Triangulo(String titulo,colores col,double base, double altura) {
-		super(titulo,col);
-		this.base = base;
-		this.altura = altura;
+	/**
+	 * 
+	 * @param base La base del triangulo
+	 * @param altura La altura del triangulo
+	 */
+	
+	public Triangulo(String titulo,Color color,double base,double altura){
+		super(titulo,color);
+		this.base=base;
+		this.altura=altura;
 	}
-
+	
 	public double getBase() {
 		return base;
 	}
@@ -23,21 +29,34 @@ public class Triangulo extends Figura{
 	public void setAltura(double altura) {
 		this.altura = altura;
 	}
-	
-	public double calcularArea() {
-		double area;
-		area=((base*altura)/2);
-		return area;
+	/**
+	 * Método para calcular el área del triángulo
+	 * @return el área del triángulo
+	 */
+	public double calcularArea(){
+		return ((base*altura)/2);
 	}
 	
-	public double calcularPerimetro() {
-		double perimetro;
-		perimetro=base*3;
-		return perimetro;
+	/**
+	 * Método para calcular el perímetro del triángulo
+	 * @return el perímetro del triángulo
+	 */
+	public double calcularPerimetro(){
+		return base+altura+calcularHipotenusa();
 	}
+	/**
+	 * Método para calcular la hipotenusa del triangulo
+	 * @return La hipotenusa del triangulo
+	 */
+	public double calcularHipotenusa(){
+		return Math.sqrt(Math.pow(base, 2)+Math.pow(altura, 2));
+	}
+	
+
 	@Override
 	public String toString() {
-		return "Triangulo [base=" + base + ", altura=" + altura + "]";
+		return super.toString()+" Triangulo [base=" + base + ", altura=" + altura + "]";
 	}
 
+	
 }

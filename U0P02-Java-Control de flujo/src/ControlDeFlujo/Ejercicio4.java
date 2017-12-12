@@ -1,26 +1,28 @@
 package ControlDeFlujo;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ejercicio4 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		Scanner leer = new Scanner(System.in);
-		int n;
-		System.out.println("Introduce un nÃºmero");
-		n=leer.nextInt();
-	}
-	public void incorrecto() {
-		try {
-		int numero;
-		Scanner leer=new Scanner(System.in);
-		System.out.println("Introduce un numero");
-		numero=leer.nextInt();	
-		System.out.println(numero);
-		}catch(Exception e) {
-			System.out.println("El valor introducido es incorrecto");
-		}
+
+		int numero = 0;
+		Scanner teclado = new Scanner(System.in);
+		boolean error = false;
+
+		do {
+			try {
+				System.out.println("Introduce un numero entre 1 y 10");
+				numero = teclado.nextInt();
+				error = false;
+			} catch (InputMismatchException e) {
+				teclado = new Scanner(System.in);
+				System.out.println("Por favor,introduce un número");
+				error = true;
+			}
+		} while (error);
+		System.out.println("El número introducido es " + numero);
 	}
 }
+
