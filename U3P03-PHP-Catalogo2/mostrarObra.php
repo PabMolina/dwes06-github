@@ -6,40 +6,33 @@
 <?php
 include 'Obra.php';
 $servidor="localhost";
-$usuario="alumno";
-$clave="alumno";
+$usuario="alumno_rw";
+$clave="dwes";
 
 $conexion = new mysqli($servidor,$usuario,$clave,"catalogo22");
 
-$conexion->query("SET NAMES 'UTF8'");
-
-$order="";
-$where="";
-$ruta="img";
 
 if ($conexion->connect_errno) {
     echo "<p>Error al establecer la conexión (" . $conexion->connect_errno . ") " . $conexion->connect_error . "</p>";
 }
-
-if( isset($_REQUEST['id']) && $_REQUEST['id']=='ASC') {
-    
-    $order="ORDER BY titulo ".$_REQUEST['id'];
-}
-else if ( isset($_REQUEST['id']) && $_REQUEST['id']=='DESC' ){
-    
-    $order="ORDER BY titulo ".$_REQUEST['id'];
-}
-
-
+$conexion->query("SET NAMES 'UTF8'");
+$ruta="img";
 ?>
 <table style='border:0'>
 <tr style='background-color:lightblue'>
-	<th>Titulo<a href="mostrarcatalogo.php?id=ASC">&#9650</a> <a href="mostrarcatalogo.php?id=ASC">&#9660</a></th>
-	<th>IdAutor</th>
-	<th>Nombre Autor</th>
+	<th>ID OBRA</th>
+	<th>TITULO</th>
+	<th>AÑO</th>
+	<th>ID AUTOR</th>
+	<th>IMAGEN</th>
+	<th>NOMBRE AUTOR<th>
 </tr>
 <?php 
-$resultado=$conexion ->query("SELECT * FROM obra ".$order);
+
+
+if(!isset($_REQUEST["idObra"])) die ("<h3>ERROR en la peticion,no existe identificador de obra");
+$id=$_REQUEST["idObra"];
+$resultado=$conexion ->query("SELECT * FROM obra WHERE idObra=".$id);
 if($resultado->num_rows==0)echo "<p>No hay discos en la base de datos</p>";
 
 while ($obra = $resultado->fetch_object('Obra')) {
@@ -48,14 +41,18 @@ while ($obra = $resultado->fetch_object('Obra')) {
     $autor=$resultado2->fetch_assoc();
     
     echo "<tr bgcolor='lightgreen'>";
-    echo "<td><a href='mostrarObra.php?idObra=".$obra ->getIdObra()."'>".$obra->getTitulo()."</td>\n";
+    echo "<td>".$obra->getIdObra()."</td>\n";
+    echo "<td>".$obra->getTitulo()."</td>\n";
+    echo "<td>".$obra->getAño()."</td>\n";
     echo "<td>".$obra->getIdAutor()."</td>\n";
+    echo "<td><img src=img/".$obra->getImagen()."></td>\n";
     echo "<td>".$autor['nombre']."</td>\n";
     echo "</tr>";
     mysqli_free_result($resultado2);
 }
-
 ?>
 </table>
+<a href="mostrarcatalogo.php"><button>Volver al catálogo</button></a>
 </body>
 </html>
+

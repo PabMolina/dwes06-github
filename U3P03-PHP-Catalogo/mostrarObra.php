@@ -52,7 +52,7 @@ while ($obra = $resultado->fetch_object('Obra')) {
 }
 ?>
 </table>
-<a href="mostrarCatalogo.php"><button>Volver al catálogo</button></a>
+<a href="mostrarcatalogo.php"><button>Volver al catálogo</button></a>
 </body>
 </html>
 
