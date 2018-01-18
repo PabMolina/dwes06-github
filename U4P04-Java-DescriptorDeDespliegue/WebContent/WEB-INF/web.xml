@@ -19,6 +19,22 @@
     <url-pattern>/EjemploServletHttp</url-pattern>
     <url-pattern>/SampleHttpServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>servletDeFecha</servlet-name>
+    <servlet-class>servletejemplo.EscribeFecha</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletDeFecha</servlet-name>
+    <url-pattern>/EscribeFecha</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>servletNumeroRandom</servlet-name>
+    <servlet-class>servletejemplo.InventaNumero</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>servletNumeroRandom</servlet-name>
+    <url-pattern>/NumeroRandom</url-pattern>
+  </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/errores/error404.html</location>

@@ -1,26 +1,24 @@
 package servletejemplo;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
- * Servlet implementation class SegundoServlet
+ * Servlet implementation class InventaNumero
  
-@WebServlet("/EscribeFecha")
+@WebServlet("/InventaNumero")
 */
-public class EscribeFecha extends HttpServlet {
+public class InventaNumero extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EscribeFecha() {
+    public InventaNumero() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,17 +26,19 @@ public class EscribeFecha extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
- 		response.setContentType("text/html;UTF-8");
- 		PrintWriter out = response.getWriter();
- 		Date fecha=new Date();
- 		out.println("<html><head><meta charset='UTF-8'/><title>Servlet de ejemplo</title></head>");
- 		out.println("<body><h1>Fecha actual</h1>");
- 		out.println("<h3>"+fecha+"</h3>");
-		out.println("<p><a href='./index.html'>Volver</a></p>");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html;UTF-8");
+		int numeroAleatorio = (int) (Math.random()*1000+1);
+		PrintWriter out = response.getWriter();
+		out.println("<html><head><meta charset='UTF-8'/><title>Número random</title></head>");
+		out.println("<body><h1>Número Aleatorio</h1>");
+ 		out.println("<body><h1>"+numeroAleatorio+"</h1>");
+ 		out.println("<p><a href='./index.html'>Volver</a></p>");
  		out.println("</body></html>");
  		out.close();
-    }
+    
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
