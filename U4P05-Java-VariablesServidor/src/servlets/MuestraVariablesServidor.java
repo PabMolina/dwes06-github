@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
@@ -79,11 +80,36 @@ public class MuestraVariablesServidor extends HttpServlet {
 				out.println("<tr><td>"+actual+"</td><td>"+contexto.getInitParameter(actual)+"</td></tr>");	
 	
 		}
+		
 		out.println("</table>");
 		
 		out.println("<h3>El servidor de bases de datos que utilizaremos es "+contexto.getInitParameter("srv_bd")+"</h3>");
 		out.println("<h3>El valor del parámetro de servlet 1 es "+this.getInitParameter("servlet1")+"</h3>");
 		
+		out.println("<h4>Parámetros de la request</h4>");
+		Enumeration <String> parametrosRequest = request.getParameterNames();
+		while(parametrosRequest.hasMoreElements()) {
+			String actual = parametrosRequest.nextElement();
+			out.println("<table style='border-collapse: collapse;margin:10px'>");
+			out.println("<tr><td><b>Parámetros</b></td></tr>");
+			out.println("<tr><td>"+actual+": "+request.getParameter(actual)+"</td></tr>");
+			out.println("</p>");
+		}
+		out.println("</table>");
+		request.setAttribute("fecha", new Date());
+		request.setAttribute("autor", "Pablo Molina");
+		
+		out.println("<h4>Atributos de la request</h4>");
+		Enumeration <String> atributosRequest = request.getAttributeNames();
+		while(atributosRequest.hasMoreElements()) {
+			String actual = atributosRequest.nextElement();
+			out.println("<table style='border-collapse: collapse;margin:10px'>");
+			out.println("<tr><td><b>Atributo</b></td></tr>");
+			out.println("<tr><td>"+actual+": "+request.getAttribute(actual)+"</td></tr>");
+			out.println("</p>");
+		}
+		
 		out.close();
+		
 	}
 }
