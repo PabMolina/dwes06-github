@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'/>
+</head>
+
+<body>
+	<h1>INDEX PABLO MOLINA</h1>
+	<form id="formulario" action="/U4P07-Java-DatosPersonales/ProcesarDatos" method="post">
+		<h3>Nombre: </h3> 
+		<input type="text" name="nombre">
+		
+		
+		<h3>Color: </h3> 
+		<input type="color" name="color" value="#ff0000">
+		
+		<h3>Password: minimo(1 numero, 1 caracter especial('*','-','+','?','¿','!','¡'), 1 mayuscula) </h3> 
+		<input type="password" name="pass">
+		
+		<h3>Fecha Nacimiento: </h3> 
+		<input type="date" name="fecha">
+		
+		<h3>Sexo: </h3> 
+		Masculino<input type="radio" name="sexo" value="Masculino"></br>
+		Femenino<input type="radio" name="sexo" value="Femenino"></br>
+		
+		
+		<h3>Musica preferida: </h3> 
+		<input type="checkbox" name="musica" value="rock">Rock<br>
+		<input type="checkbox" name="musica" value="pop">Pop<br>
+		<input type="checkbox" name="musica" value="rock">Rock<br>
+		<input type="checkbox" name="musica" value="rock">Rock<br>
+		<input type="checkbox" name="deporte" value="balonmano">Balonmano </br>
+		<input type="checkbox" name="deporte" value="otros">Otros </br>
+		
+		<h3>Marcas de coches favoritas:</h3> 
+		<select name="coches" form="formulario">
+  			<option value="volvo">Volvo</option>
+		  	<option value="saab">Saab</option>
+  			<option value="opel">Opel</option>
+  			<option value="audi">Audi</option>
+  			<option value="otros">Otros</option>
+		</select>
+	
+	<h3>Introduce una breve descripción sobre ti:</h3> 
+	<textarea rows="4" cols="50" name="descripcion" form="formulario">
+Escribe aqui...</textarea>
+	</br>
+	
+	
+		
+		<input type="submit" name="enviar">
+	</form>
+	
+	
+</body>
