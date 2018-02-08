@@ -35,8 +35,6 @@ public class ProcesarDatosServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 
 		PrintWriter out = response.getWriter();
-		int number = (int) request.getAttribute("numeroAleatorio");
-		out.println("<h1 style='color:"+request.getParameter("color")+"'>" + number + "</h1>");
 		out.println("<ul>");
 		Enumeration<String> parametros= request.getParameterNames();
 		while(parametros.hasMoreElements()) {
@@ -47,16 +45,16 @@ public class ProcesarDatosServlet extends HttpServlet {
 		Map<String, String[]> parejas=request.getParameterMap();
 		parejas.forEach((campo,valor)->{
 			out.println("<p>"+campo+": ");
-			for(String v: valor) {
-				out.println("- "+v);
+			for(String val: valor) {
+				out.println("- "+val);
 			}
 		});
 		
-		SimpleDateFormat formatoFechaForm =new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatoFecha =new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			Date fecha=formatoFechaForm.parse(request.getParameter("fecha"));
-			SimpleDateFormat formatoFechaSalida= new SimpleDateFormat("dd/MM/yyyy");
-			out.println("<p>Fecha: "+formatoFechaSalida.format(fecha)+"</p>");
+			Date fecha=formatoFecha.parse(request.getParameter("fecha"));
+			SimpleDateFormat formatoFechaFinal= new SimpleDateFormat("dd/MM/yyyy");
+			out.println("<p>Fecha: "+formatoFechaFinal.format(fecha)+"</p>");
 		}catch(java.text.ParseException e) {
 			e.printStackTrace();
 		}
