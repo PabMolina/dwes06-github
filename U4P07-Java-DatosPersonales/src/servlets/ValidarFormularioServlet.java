@@ -32,12 +32,12 @@ public class ValidarFormularioServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		char esp[] = { '*', '-', '+', '?', '¿', '!', '¡' };
+		char especiales[] = { '*', '-', '+', '?', '¿', '!', '¡' };
 		String pass = request.getParameter("pass");
 		boolean encontradoNum = false;
 		boolean encontradoChar = false;
 		boolean encontradoMayus = false;
-		
+
 		char clave;
 
 		for (int i = 0; i < pass.length(); i++) {
@@ -45,64 +45,74 @@ public class ValidarFormularioServlet extends HttpServlet {
 			String passValue = String.valueOf(clave);
 			if (passValue.matches("[A-Z]")) {
 				encontradoMayus = true;
-				
+
 			} else if (passValue.matches("[0-9]")) {
 				encontradoNum = true;
 			}
 		}
 		for (int i = 0; i < pass.length() && !encontradoChar; i++) {
 
-			for (int j = 0; j < esp.length && !encontradoChar; j++) {
-				if (pass.charAt(i) == esp[j]) {
+			for (int j = 0; j < especiales.length && !encontradoChar; j++) {
+				if (pass.charAt(i) == especiales[j]) {
 					encontradoChar = true;
 				}
 			}
 		}
-		
-		
+
 		SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd");
-		boolean fechacorrect=false;
+		boolean fechacorrect = false;
 
-		try{
+		try {
 
-			Date fecha=formatoEntrada.parse(request.getParameter("fecha"));
-			Date actual=new Date();
-			
+			Date fecha = formatoEntrada.parse(request.getParameter("fecha"));
+			Date actual = new Date();
+
 			long ActualMilisegundos = actual.getTime();
 			long FechaMilisegundos1 = fecha.getTime();
-			
-			
-		if(ActualMilisegundos>FechaMilisegundos1){
-			fechacorrect=true;			
-		}else {
-			fechacorrect=false;			
-		}
-		}catch (Exception e) {
+
+			if (ActualMilisegundos > FechaMilisegundos1) {
+				fechacorrect = true;
+			} else {
+				fechacorrect = false;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		boolean nombrevacio=false;
-		
-		if(request.getParameter("nombre")!="") {
-			nombrevacio=true;
-		}else {
-			nombrevacio=false;
+		int nm = 0;
+		boolean numeric = false;
+		if (request.getParameter("numero") != "") {
+			nm = Integer.parseInt(request.getParameter("numero"));
+
+			if (nm > 0) {
+				if (request.getParameter("numero").matches("[0-9]+")) {
+					numeric = true;
+				} else {
+					numeric = false;
+				}
+			}
 		}
-		
-		if (!encontradoNum || !encontradoChar || !encontradoMayus 
-				|| !fechacorrect || !nombrevacio) {
+		boolean nombrevacio = false;
 
-			response.sendRedirect("./index.html");
+		if (request.getParameter("nombre") != "") {
+			nombrevacio = true;
+		} else {
+			nombrevacio = false;
+		}
 
-		} else if (encontradoNum && encontradoChar && encontradoMayus 
-				&& fechacorrect && nombrevacio) {
-			
-			
+		if (!encontradoNum || !encontradoChar || !encontradoMayus || !numeric || !fechacorrect || !nombrevacio) {
+
+			response.sendRedirect("./Index.html");
+
+		} else if (encontradoNum && encontradoChar && encontradoMayus && numeric && fechacorrect && nombrevacio) {
+			int limite = Integer.parseInt(request.getParameter("numero"));
+			int num = (int) (Math.random() * limite);
+			request.setAttribute("numeroAleatorio", num);
+
 			RequestDispatcher rd = request.getRequestDispatcher("/ProcesarDatos");
 			rd.forward(request, response);
-			
+
 		}
-		
+
 	}
 
 	/**

@@ -1,15 +1,22 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8'/>
 </head>
 
 <body>
-	<h1>INDEX PABLO MOLINA</h1>
-	<form id="formulario" action="/U4P07-Java-DatosPersonales/ValidarFormulario" method="post">
+	<h1>INDEX</h1>
+	<form id="formulario" action="./ValidarFormulario" method="post">
 		<h3>Nombre: </h3> 
 		<input type="text" name="nombre">
 		
+		<h3>Numero límite: </h3> 
+		<input type="number" name="numero">
+		
+		<h3>Color: </h3> 
+		<input type="color" name="color" value="#ff0000">
+		
+		<h3>Password:</h3> 
+		<input type="password" name="pass">
 		
 		<h3>Fecha Nacimiento: </h3> 
 		<input type="date" name="fecha">
@@ -17,10 +24,8 @@
 		<h3>Sexo: </h3> 
 		Masculino<input type="radio" name="sexo" value="Masculino"><br>
 		Femenino<input type="radio" name="sexo" value="Femenino"><br>
+		Otro<input type="radio" name="sexo" value="Otros">
 		
-		<h3>Contraseña: </h3>
-		<input type="password" name="pass">
-				
 		<h3>Musica preferida: </h3> 
 		<input type="checkbox" name="musica" value="rock">Rock<br>
 		<input type="checkbox" name="musica" value="pop">Pop<br>
@@ -28,22 +33,25 @@
 		<input type="checkbox" name="musica" value="indie">Indie<br>
 		<input type="checkbox" name="musica" value="otros">Otros <br>
 		
-		<h3>Equipo de fútbol preferido: </h3> 
+		<h3>Equipo de fútbol preferido:</h3> 
 		<select name="futbol" form="formulario">
   			<option value="madrid">Real Madrid</option>
-		  	<option value="barcelona">FC Barcelona</option>
-  			<option value="atleti">Atlético de Madrid</option>
+		  	<option value="atleti">Atletico de Madrid</option>
+  			<option value="barcelona">FC. Barcelona</option>
   			<option value="sevilla">Sevilla</option>
   			<option value="otros">Otros</option>
 		</select>
 	
 	<h3>Introduce un comentario sobre uno de tus hobbies:</h3> 
-	<textarea rows="4" cols="50" name="comentario" form="formulario">
+	<textarea rows="4" cols="50" name="descripcion" form="formulario">
 </textarea>
 	<br>
+	
+	
 		
 		<input type="submit" name="enviar">
 	</form>
 	
 	
 </body>
+</html>
