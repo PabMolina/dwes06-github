@@ -1,7 +1,8 @@
 package servlets;
 
-import clases.Obra;
-import clases.Autor;
+import modelo.Obra;
+import modelo.Usuario;
+import modelo.Autor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,7 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,11 +17,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MostrarCatalogo
  */
-@WebServlet("/MostrarCatalogo")
+@WebServlet(urlPatterns= {"/MostrarCatalogo","/"})
 public class MostrarCatalogoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -167,11 +168,19 @@ public class MostrarCatalogoServlet extends HttpServlet {
 		  
 
 		  // Paso 6: Desconexión
-		  if (sentencia != null)
+		  if (sentencia != null) {
 		    sentencia.close();
-		  if (conn != null)
+		  }
+		  if (conn != null) {
 		    conn.close();
-		} catch (Exception e) {
+		} 
+		
+		 HttpSession session = request.getSession();
+			Usuario usuario = (Usuario) session.getAttribute("usuario");
+			out.println("<h4>Sesión iniciada como <a href='"+request.getRequestURI()+"Cuenta'>" 
++ usuario.getLogin() + "</a></h4>");
+		
+		}catch (Exception e) {
 		  e.printStackTrace();
 		}
 	
