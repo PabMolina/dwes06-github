@@ -37,11 +37,11 @@ public class CuentaServlet extends HttpServlet {
 		ServletContext contexto = request.getServletContext();
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;UTF-8");
-		out.println("<html><head><meta charset='UTF-8'/><html><head><meta charset='UTF-8'/></head><body>");
+		out.println("<html><head><meta charset='UTF-8'/></head><body>");
 		out.println(usuario.toString());
-		out.println("<p><a href='"+contexto.getContextPath()+"/Logout>Cerrar sesión.</a></p>");
-		out.println("<p><a href='"+contexto.getContextPath()+"/Baja>Baja de cuenta.</a></p>");
-		out.println("<p><a href='"+request.getHeader("Referer")+">Volver.</a></p>");
+		out.println("<p><a href='"+contexto.getContextPath()+"/Logout'>Cerrar sesión.</a></p>");
+		out.println("<p><a href='"+contexto.getContextPath()+"/Baja'>Baja de cuenta.</a></p>");
+		out.println("<p><a href='"+request.getHeader("Referer")+"'>Volver.</a></p>");
 		out.println("</body></html>");
 
 	}

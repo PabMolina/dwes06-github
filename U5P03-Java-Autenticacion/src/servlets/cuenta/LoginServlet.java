@@ -44,8 +44,9 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 		String mensajeError = "";
 		HttpSession session = request.getSession(false); // L1
+		
 		// si ya había sesión con un valor de usuario válido
-		out.println("<html><head><meta charset='UTF-8'/><html><head><meta charset='UTF-8'/></head><body>");
+		out.println("<html><head><meta charset='UTF-8'/></head><body>");
 
 		Connection conn = null;
 		Statement sentencia = null;
@@ -75,14 +76,14 @@ public class LoginServlet extends HttpServlet {
 					// Comprobaciones que debes hacer:
 
 					// a. Error: el campo login no puede estar vacío
-					if (request.getParameter("login") == "") {
-						mensajeError = "Campo login vacio.";
+					if (request.getParameter("username") == "") {
+						mensajeError += "Campo login vacio.";
 					} else {
 						// b. Error: el campo password no puede estar vacío
 						if (request.getParameter("password") == "") {
-							mensajeError = "Campo password vacio.";
+							mensajeError += "Campo password vacio.";
 						} else {
-							if (request.getParameter("login") != "") {
+							if (request.getParameter("username") != "") {
 
 								String consulta = "SELECT * FROM usuario where usuario.login LIKE '"
 										+ request.getParameter("username") + "'";
@@ -96,7 +97,7 @@ public class LoginServlet extends HttpServlet {
 
 									if (!rset.getString("password").equals(request.getParameter("password"))) {
 
-										mensajeError = "Password incorrecta.";
+										mensajeError += "Password incorrecta.";
 									} else {
 										String login = rset.getString("login");
 										String pass = rset.getString("password");

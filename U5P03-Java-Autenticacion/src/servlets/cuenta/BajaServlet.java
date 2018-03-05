@@ -53,11 +53,11 @@ public class BajaServlet extends HttpServlet {
 			String url = contexto.getInitParameter("url");
 			conn = DriverManager.getConnection(url, userName, password);
 
-			String consultaBaja = "DELETE FROM usuario WHERE login = '" +usuario.getLogin()+ "';";
-			sentencia = conn.createStatement();
+			String consultaBaja = "DELETE FROM usuario WHERE login = '" +usuario.getLogin()+ "'";
 			System.out.println(consultaBaja);
+			sentencia = conn.createStatement();
 			ResultSet rset = sentencia.executeQuery(consultaBaja);
-			
+			session.invalidate();
 			response.sendRedirect(contexto.getContextPath() + "/Login");
 
 		} catch (Exception e) {

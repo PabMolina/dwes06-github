@@ -41,7 +41,7 @@ public class AltaServlet extends HttpServlet {
 		response.setContentType("text/html;UTF-8");
 		String mensajeError = "";
 
-		out.println("<html><head><meta charset='UTF-8'/><html><head><meta charset='UTF-8'/></head><body>");
+		out.println("<html><head><meta charset='UTF-8'/></head><body>");
 
 		if (request.getMethod().equals("POST")) { // si venimos de enviar el formulario...
 
