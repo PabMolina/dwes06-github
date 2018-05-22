@@ -38,7 +38,7 @@ public class Vehiculos {
 				+ "]";
 	}
 	
-	public void costeReparacion() {
+	public double costeReparacion() {
 		
 		double costeTotal = 0;
 		
@@ -51,6 +51,7 @@ public class Vehiculos {
 			}
 			
 		}
+		return costeTotal;
 		
 	}
 	

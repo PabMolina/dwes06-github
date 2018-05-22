@@ -46,6 +46,10 @@ public class Principal {
 							case 1:
 								t.altaVehiculo();
 								break;
+							case 2:
+								System.out.println("Escribe el codigo del mecánico");
+								int ans = LeerTeclado.readInteger();
+								t.terminarReparacion(ans);
 
 							
 				}System.out.println("\n�Quieres repetir?si|no");
