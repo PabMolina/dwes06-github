@@ -30,10 +30,13 @@ public class Taller {
 		boolean libre = false;
 		Mecanicos mecAux = null;
 
-		System.out.println("¿Su vehículo es un coche o una moto?");
-		eleccion = LeerTeclado.readString();
 		System.out.println("Escriba la matrícula de su vehiculo");
 		mat = LeerTeclado.readString();
+		System.out.println("¿Su vehículo es un coche o una moto?");
+		eleccion = LeerTeclado.readString();
+		
+		if (eleccion.equalsIgnoreCase("coche") || eleccion.equalsIgnoreCase("moto")) {
+			
 		// COCHE------------------------------------------------------------------------------------
 		if (eleccion.equalsIgnoreCase("coche")) {
 			int plazas;
@@ -72,54 +75,52 @@ public class Taller {
 			v.setEstado("En espera");// El vehiculo siempre comienza en espera, pero por si acaso.
 			listaEspera.add(v);// Añadimos el vehículo a la lista de espera.
 		}
+	}else
+		System.out.println("Solo aceptamos coches y motos");
 	}
 
 	// ---------------------------------------2-TERMINACIÓN DE UNA
 	// REPARACIÓN------------------------------------------------------------------------------
 
-	/*
-	 * public void buscarMecanico(int codMecanico) {
-	 * 
-	 * boolean encontrado = false; Mecanicos mec =null;
-	 * 
-	 * for (int i = 0; i < listaMecanicos.size(); i++) {
-	 * 
-	 * if (listaMecanicos.get(i).getCodMecanico() == codMecanico) {
-	 * 
-	 * encontrado = true;
-	 * 
-	 * }
-	 * 
-	 * }
-	 * 
-	 * }
-	 */
 
 	public void terminarReparacion(int codMecanico) {
 
 		Vehiculos vAux = null;
+		Mecanicos mAux = null;
 		boolean encontrado = false;
 		boolean foundit = false;
+		boolean mEncontrado = false;
 		Averias avAux = null;
 		String respuesta;
 		//RECORREMOS LA LISTA DE MECÁNICOS CON UN FOREACH-----------------------------
 		for (Mecanicos m : listaMecanicos) {
 
 			if (m.getCodMecanico() == codMecanico) { //Si encuentra el codigo de mecánico...
+				mEncontrado = true;
+				mAux = m;
 				
-				vAux = m.getVehiculoReparacion(); //Cogemos el vehiculo que está reparando este mecánico y lo metemos en una variable.
-				encontrado = true;
-
+				if (m.getVehiculoReparacion()!=null) {
+					vAux = m.getVehiculoReparacion(); //Cogemos el vehiculo que está reparando este mecánico y lo metemos en una variable.
+					encontrado = true;
+				}
+			
 			}
+			
 
 		}
-
-		if (!encontrado) {
-
+		if (!mEncontrado) {
 			System.out.println("Este mecánico no existe");
+		
+		}
+
+		if (mEncontrado && !encontrado) {
+
+			System.out.println("Este mecánico no tiene ningún vehículo en reparación.");
 
 			}
 		
+		if (mEncontrado && encontrado) {
+			
 			//Damos opcion al cliente de elegir la averia.
 		do {
 			
@@ -143,7 +144,7 @@ public class Taller {
 		
 			}
 			if(!foundit) {
-				System.out.println("PRIMO NO TE INVENTES LOS NUMEROS QUE SOLO HAY 4, DEL 1 AL 4");
+				System.out.println("Ese número de avería no existe en estos momentos");
 			}
 			
 					System.out.println("¿Quieres añadir más averías? si|no");
@@ -152,15 +153,20 @@ public class Taller {
 		}while(respuesta.equalsIgnoreCase("si"));
 		
 			
-			System.out.println(vAux.costeReparacion());
+			System.out.println("Coste total = " + vAux.costeReparacion()); //Mostramos el coste total de las averías
 			
-		
-		
-		//AQUI YA SOLO SERIA COMPROBACIONES DE ESTADO "REPARADO" Y DEMASES
-		
+			vAux.setEstado("Reparado"); //Cambiamos el estado del vehículo
+			
+			if (!listaEspera.isEmpty()) { //Si lista de espera no está vacía...
+				Vehiculos v = listaEspera.getFirst(); // Cogemos el siguiente de la lista y lo guardamos en una variable
+				v.setEstado("En reparación"); // Le ponemos el nuevo estado
+				mAux.setVehiculoReparacion(v); // Asignamos este nuevo vehículo al mecánico
+			}else						//Si la lista de espera está vacía........
+				mAux.setVehiculoReparacion(null); // El mecánico no tiene ningún coche asignado
+				mAux.setLibre(true);			// El mecánico pasa a estar libre.
 
 		}
 	}
-
+}
 
 

@@ -9,7 +9,9 @@ public class Principal {
 		//creamos el objeto taller:
 				Taller t= new Taller();
 				
-				//cremaos algunas averias
+				//AQUÍ CREO OBJETOS PARA PROBAR LOS METODOS
+				
+				//creamos algunas averias
 					Averias a1= new Averias();
 					Averias a2= new Averias();
 					Averias a3= new Averias();
@@ -39,8 +41,7 @@ public class Principal {
 							System.out.println("Elige una opci�n:");
 							System.out.println("1.Recepci�n de Veh�culo");
 							System.out.println("2.Terminaci�n de una reparaci�n");
-							System.out.println("3.Entrega de Veh�culos reparados");
-							System.out.println("4.Alta Mec�nico");
+							System.out.println("3.Entrega de Veh�culos reparados");//No está hecho.
 							x=LeerTeclado.readInteger();
 							switch (x) {
 							case 1:
@@ -52,7 +53,7 @@ public class Principal {
 								t.terminarReparacion(ans);
 
 							
-				}System.out.println("\n�Quieres repetir?si|no");
+				}System.out.println("¿Quieres repetir el proceso? (Si / No)");
 				respuesta=LeerTeclado.readString();
 			}while(respuesta.equalsIgnoreCase("si"));
 						

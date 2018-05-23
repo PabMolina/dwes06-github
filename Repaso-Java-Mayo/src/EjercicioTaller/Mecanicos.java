@@ -7,7 +7,7 @@ public class Mecanicos {
 	private double sueldo;
 	private boolean libre;
 	private Vehiculos vehiculoReparacion;
-	private static int cont;
+	private static int cont = 1;
 	
 	public Mecanicos(String nombre, double sueldo, Vehiculos v) {
 		
