@@ -7,14 +7,14 @@ import java.util.Vector;
 public class Taller {
 
 	ArrayList<Averias> listaAverias;
-	LinkedList<Vehiculos> listaVehiculosReparacion;
+	LinkedList<Vehiculos> listaVehiculos;
 	Vector<Mecanicos> listaMecanicos;
 	LinkedList<Vehiculos> listaEspera; // Debería ser una cola, pero ahora mismo no se hacerlo.
 
 	public Taller() {
 
 		listaAverias = new ArrayList<Averias>();
-		listaVehiculosReparacion = new LinkedList<Vehiculos>();
+		listaVehiculos = new LinkedList<Vehiculos>();
 		listaMecanicos = new Vector<Mecanicos>();
 		listaEspera = new LinkedList<Vehiculos>();
 
@@ -67,13 +67,14 @@ public class Taller {
 			mecAux.setVehiculoReparacion(v);// Asignamos el vehiculo al mecánico.
 			mecAux.setLibre(false);// El mecánico ya no está libre.
 			v.setEstado("En reparación");// Cambiamos el estado del vehículo (siempre comienza "En espera").
+			listaVehiculos.add(v);
 			System.out.println("El vehículo se ha asignado al mecánico " + mecAux.getNombre());
 			// SI NO HAY UN MECÁNICO
 			// LIBRE----------------------------------------------------------------------
 		} else {
 			System.out.println("En estos momentos no hay ningún mecánico libre");
 			v.setEstado("En espera");// El vehiculo siempre comienza en espera, pero por si acaso.
-			listaEspera.add(v);// Añadimos el vehículo a la lista de espera.
+			listaEspera.addLast(v);// Añadimos el vehículo a la lista de espera.
 		}
 	}else
 		System.out.println("Solo aceptamos coches y motos");
@@ -124,7 +125,7 @@ public class Taller {
 			//Damos opcion al cliente de elegir la averia.
 		do {
 			
-			System.out.println("Elige una opci�n:");
+			System.out.println("Elige una opcion:");
 			System.out.println("1.Averia 1");
 			System.out.println("2.Averia 2");
 			System.out.println("3.Averia 3");
@@ -160,6 +161,8 @@ public class Taller {
 			if (!listaEspera.isEmpty()) { //Si lista de espera no está vacía...
 				Vehiculos v = listaEspera.getFirst(); // Cogemos el siguiente de la lista y lo guardamos en una variable
 				v.setEstado("En reparación"); // Le ponemos el nuevo estado
+				listaEspera.remove(v); //Borramos el vehiculo de la lista de espera
+				
 				mAux.setVehiculoReparacion(v); // Asignamos este nuevo vehículo al mecánico
 			}else						//Si la lista de espera está vacía........
 				mAux.setVehiculoReparacion(null); // El mecánico no tiene ningún coche asignado
