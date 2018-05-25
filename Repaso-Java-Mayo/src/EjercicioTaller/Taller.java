@@ -74,7 +74,7 @@ public class Taller {
 		} else {
 			System.out.println("En estos momentos no hay ningún mecánico libre");
 			v.setEstado("En espera");// El vehiculo siempre comienza en espera, pero por si acaso.
-			listaEspera.addLast(v);// Añadimos el vehículo a la lista de espera.
+			listaEspera.offerLast(v);// Añadimos el vehículo a la lista de espera.
 		}
 	}else
 		System.out.println("Solo aceptamos coches y motos");
@@ -159,15 +159,14 @@ public class Taller {
 			vAux.setEstado("Reparado"); //Cambiamos el estado del vehículo
 			
 			if (!listaEspera.isEmpty()) { //Si lista de espera no está vacía...
-				Vehiculos v = listaEspera.getFirst(); // Cogemos el siguiente de la lista y lo guardamos en una variable
+				Vehiculos v = listaEspera.poll(); // Cogemos el siguiente de la lista y lo guardamos en una variable
 				v.setEstado("En reparación"); // Le ponemos el nuevo estado
-				listaEspera.remove(v); //Borramos el vehiculo de la lista de espera
 				
 				mAux.setVehiculoReparacion(v); // Asignamos este nuevo vehículo al mecánico
-			}else						//Si la lista de espera está vacía........
+			}else							   //Si la lista de espera está vacía........
 				mAux.setVehiculoReparacion(null); // El mecánico no tiene ningún coche asignado
 				mAux.setLibre(true);			// El mecánico pasa a estar libre.
-
+				
 		}
 	}
 }
