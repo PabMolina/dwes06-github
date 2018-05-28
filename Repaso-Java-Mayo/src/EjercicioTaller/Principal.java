@@ -23,10 +23,10 @@ public class Principal {
 					
 					//creamos un coche
 					
-					Vehiculos c1 = new Vehiculos("3232ghg");
+					
 					
 					//Mecanicos:
-						Mecanicos m1= new Mecanicos("Luis", 1200, c1);
+						Mecanicos m1= new Mecanicos("Luis", 1200, null);
 						Mecanicos m2= new Mecanicos("Alberto", 1500, null);
 						Mecanicos m3= new Mecanicos("Roberto", 850, null);
 						Mecanicos m4= new Mecanicos("Maria", 1500, null);
@@ -51,6 +51,9 @@ public class Principal {
 								System.out.println("Escribe el codigo del mecánico");
 								int ans = LeerTeclado.readInteger();
 								t.terminarReparacion(ans);
+							case 3:
+								t.verVehiculos();
+								
 
 							
 				}System.out.println("¿Quieres repetir el proceso? (Si / No)");

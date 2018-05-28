@@ -2,7 +2,7 @@ package EjercicioTaller;
 
 import java.util.ArrayList;
 
-public class Vehiculos {
+public abstract class Vehiculos {
 
 	private String matricula;
 	private String estado;

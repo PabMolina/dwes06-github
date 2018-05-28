@@ -3,10 +3,12 @@ package EjercicioTaller;
 public class Motocicleta extends Vehiculos {
 
 	private int cilindrada;
+	private String estado;
 
 	public Motocicleta(String matricula, int cilindrada) {
 		super(matricula);
 		this.cilindrada = cilindrada;
+		estado = "En espera";
 	}
 
 	public int getCc() {
@@ -17,9 +19,19 @@ public class Motocicleta extends Vehiculos {
 		this.cilindrada = cilindrada;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	@Override
 	public String toString() {
-		return "Motocicleta [matrícula =" +getMatricula()+ ", cilindrada=" + cilindrada + "]";
+		return "Motocicleta [cilindrada=" + cilindrada + ", estado=" + estado + "]";
 	}
+
+	
 	
 }

@@ -1,6 +1,7 @@
 package EjercicioTaller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Vector;
 
@@ -126,10 +127,10 @@ public class Taller {
 		do {
 			
 			System.out.println("Elige una opcion:");
-			System.out.println("1.Averia 1");
-			System.out.println("2.Averia 2");
-			System.out.println("3.Averia 3");
-			System.out.println("4.Averia 4");
+			System.out.println("1.Cambio de aceite");
+			System.out.println("2.Cambio de ruedas");
+			System.out.println("3.Fallo eléctrico");
+			System.out.println("4.Junta de culata");
 			
 			int x=LeerTeclado.readInteger();
 			//RECORREMOS CON UN FOREACH LA LISTA ¡¡GENERAL!! DE AVERIAS----------------------------
@@ -161,13 +162,27 @@ public class Taller {
 			if (!listaEspera.isEmpty()) { //Si lista de espera no está vacía...
 				Vehiculos v = listaEspera.poll(); // Cogemos el siguiente de la lista y lo guardamos en una variable
 				v.setEstado("En reparación"); // Le ponemos el nuevo estado
-				
 				mAux.setVehiculoReparacion(v); // Asignamos este nuevo vehículo al mecánico
 			}else							   //Si la lista de espera está vacía........
 				mAux.setVehiculoReparacion(null); // El mecánico no tiene ningún coche asignado
 				mAux.setLibre(true);			// El mecánico pasa a estar libre.
 				
 		}
+	}
+	public void verVehiculos(){
+		
+		Iterator<Vehiculos> t= listaVehiculos.iterator(); 
+		while(t.hasNext()){ //Mientras el iterador tenga siguiente elemento
+			Vehiculos vAux = (Vehiculos)t.next(); //Asignamos el vehiculo de la lista a una variable auxiliar
+			System.out.println(vAux.toString());
+			if(vAux.getEstado().equalsIgnoreCase("Reparado")) { //Si el vehiculo esta reparado, lo borramos
+				System.out.println("Se ha borrado el vehículo "+vAux.toString());
+				t.remove();
+				
+			}
+				
+		}
+		
 	}
 }
 
